@@ -49,15 +49,16 @@ func (controller *UserController) Login(c echo.Context) error {
 	checkExist := &models.User{}
 	checkExistM.Decode(checkExist)
 	if checkExist.ID == "" {
-		return c.JSON(http.StatusNotFound, "User not found")
+		msg := &models.Response{Message: "User not found"}
+		return c.JSON(http.StatusNotFound, msg)
 	} else {
 		if user.Password == checkExist.Password {
 			return c.JSON(http.StatusOK, checkExist)
 		} else {
-			return c.JSON(http.StatusUnauthorized, "Incorrect Password")
+			msg := &models.Response{Message: "Incorrect Password"}
+			return c.JSON(http.StatusUnauthorized, msg)
 		}
 	}
-
 }
 
 func (controller *UserController) Signup(c echo.Context) error {
@@ -75,7 +76,8 @@ func (controller *UserController) Signup(c echo.Context) error {
 	checkExist := &models.User{}
 	checkExistM.Decode(checkExist)
 	if checkExist.ID != "" {
-		return c.JSON(http.StatusBadRequest, "User Already Exists")
+		msg := &models.Response{Message: "User Already Exists"}
+		return c.JSON(http.StatusUnauthorized, msg)
 	}
 	res, errm := collection.InsertOne(c.Request().Context(), user)
 	if errm != nil {

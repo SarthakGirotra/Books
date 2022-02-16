@@ -1,0 +1,51 @@
+basePath: /
+definitions:
+  models.Books:
+    properties:
+      id:
+        type: string
+      likecount:
+        type: integer
+      likes:
+        items:
+          type: string
+        type: array
+      published_date:
+        type: string
+      story:
+        type: string
+      title:
+        type: string
+      userid:
+        type: string
+    type: object
+host: localhost:1322
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Test
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: User micro-service
+  version: "1.0"
+paths:
+  /topBooks:
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Books'
+      summary: Show an account
+      tags:
+      - accounts
+swagger: "2.0"

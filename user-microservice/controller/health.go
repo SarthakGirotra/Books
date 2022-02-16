@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 	"t/container"
+	"t/models"
 
 	"github.com/labstack/echo/v4"
 )
@@ -16,6 +17,6 @@ func NewHealthController(container container.Container) *HealthController {
 }
 
 func (controller *HealthController) GetHealth(c echo.Context) error {
-
-	return c.JSON(http.StatusOK, "healthy")
+	msg := &models.Response{Message: "healthy"}
+	return c.JSON(http.StatusOK, msg)
 }

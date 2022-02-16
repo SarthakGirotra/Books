@@ -5,8 +5,9 @@ import (
 
 	"t/controller"
 
-	"github.com/labstack/echo/v4"
 	"t/container"
+
+	"github.com/labstack/echo/v4"
 )
 
 func Init(e *echo.Echo, container container.Container) {

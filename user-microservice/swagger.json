@@ -1,0 +1,183 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentation of user microservice",
+    "title": "User Microservice",
+    "version": "1.0.0"
+  },
+  "host": "localhost:1323",
+  "basePath": "/",
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "API endpoint for logging in.",
+        "operationId": "idOfLoginEndpoint",
+        "parameters": [
+          {
+            "description": "valid email and password.",
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UserParams"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/User"
+          },
+          "400": {
+            "$ref": "#/responses/invalid"
+          },
+          "401": {
+            "$ref": "#/responses/incorrect"
+          },
+          "404": {
+            "$ref": "#/responses/notFound"
+          }
+        }
+      }
+    },
+    "/signup": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "API endpoint for signing up.",
+        "operationId": "idOfSignupEndpoint",
+        "parameters": [
+          {
+            "description": "valid email and password.",
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UserParams"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/User"
+          },
+          "400": {
+            "$ref": "#/responses/invalid"
+          },
+          "401": {
+            "$ref": "#/responses/exists"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ApiError": {
+      "type": "object",
+      "properties": {
+        "Message": {
+          "type": "string",
+          "example": "password should contain 1 uppercase letter, 1 lowercase letter, 1 number, 1 special char and min 10 chars long"
+        },
+        "Param": {
+          "type": "string",
+          "example": "password"
+        }
+      },
+      "x-go-package": "t/middlewareLocal"
+    },
+    "Response": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string",
+          "x-go-name": "Message",
+          "example": "User not found || Incorrect Password || user already exists"
+        }
+      },
+      "x-go-package": "t/models"
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "x-go-name": "Email",
+          "example": "sarthakgirotra@gmail.com"
+        },
+        "id": {
+          "type": "string",
+          "x-go-name": "ID",
+          "example": "6034f125f5dc910af4d64484"
+        },
+        "password": {
+          "type": "string",
+          "x-go-name": "Password",
+          "example": "Test@A000000"
+        }
+      },
+      "x-go-package": "t/models"
+    },
+    "UserParams": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "x-go-name": "Email",
+          "example": "sarthakgirotra@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "x-go-name": "Password",
+          "example": "Test@A000000"
+        }
+      },
+      "x-go-package": "t/models"
+    }
+  },
+  "responses": {
+    "User": {
+      "description": "Login Response.",
+      "schema": {
+        "$ref": "#/definitions/User"
+      }
+    },
+    "exists": {
+      "description": "User Already Exists",
+      "schema": {
+        "$ref": "#/definitions/Response"
+      }
+    },
+    "incorrect": {
+      "description": "Incorrect password.",
+      "schema": {
+        "$ref": "#/definitions/Response"
+      }
+    },
+    "invalid": {
+      "description": "Invalid values.",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/ApiError"
+        }
+      }
+    },
+    "notFound": {
+      "description": "User not found.",
+      "schema": {
+        "$ref": "#/definitions/Response"
+      }
+    }
+  }
+}

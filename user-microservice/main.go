@@ -31,6 +31,11 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, a.GetEnv())
 	})
+	e.Static("/swagger-ui.css", "dist/swagger-ui.css")
+	e.Static("/swagger-ui-bundle.js", "dist/swagger-ui-bundle.js")
+	e.Static("/swagger-ui-standalone-preset.js", "dist/swagger-ui-standalone-preset.js")
+	e.Static("/swagger.json", "./swagger.json")
+	e.Static("/swaggerui", "dist/index.html")
 	e.Logger.Fatal(e.Start(":1323"))
 
 }

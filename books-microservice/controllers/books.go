@@ -7,10 +7,11 @@ import (
 	"context"
 	"encoding/csv"
 	"fmt"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"net/http"
 	"strings"
 	"time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
 
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
@@ -85,6 +86,13 @@ func (controller *BookController) SaveFromCSV(c echo.Context) (err error) {
 	return c.JSON(200, "Successfully uploaded file")
 }
 
+// @Summary      Show an account
+// @Description  get string by ID
+// @Tags         accounts
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}  models.Books
+// @Router       /topBooks [get]
 func (controller *BookController) TopBooks(c echo.Context) (err error) {
 	findOptions := options.Find()
 	findOptions.SetSort(bson.D{{Key: "likecount", Value: -1}})

@@ -10,8 +10,25 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	echoSwagger "github.com/swaggo/echo-swagger"
+
+	_ "github.com/swaggo/echo-swagger/example/docs"
 )
 
+// @title           User micro-service
+// @version         1.0
+// @description     Test
+// @termsOfService  http://swagger.io/terms/
+
+// @contact.name   API Support
+// @contact.url    http://www.swagger.io/support
+// @contact.email  support@swagger.io
+
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host      localhost:1322
+// @BasePath  /
 func main() {
 	fmt.Println("Starting")
 
@@ -33,6 +50,7 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		return c.File("./index.html")
 	})
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 	e.Logger.Fatal(e.Start(":1322"))
 
 }

@@ -18,7 +18,9 @@ type CustomValidator struct {
 }
 
 type ApiError struct {
-	Param   string
+	// example: password
+	Param string
+	// example: password should contain 1 uppercase letter, 1 lowercase letter, 1 number, 1 special char and min 10 chars long
 	Message string
 }
 
