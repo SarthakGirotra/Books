@@ -9,6 +9,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type UserController struct {
@@ -52,7 +53,7 @@ func (controller *UserController) Login(c echo.Context) error {
 		msg := &models.Response{Message: "User not found"}
 		return c.JSON(http.StatusNotFound, msg)
 	} else {
-		if user.Password == checkExist.Password {
+		if checkPasswordHash(user.Password, checkExist.Password) {
 			return c.JSON(http.StatusOK, checkExist)
 		} else {
 			msg := &models.Response{Message: "Incorrect Password"}
@@ -79,6 +80,7 @@ func (controller *UserController) Signup(c echo.Context) error {
 		msg := &models.Response{Message: "User Already Exists"}
 		return c.JSON(http.StatusUnauthorized, msg)
 	}
+	user.Password, _ = hashPassword(user.Password)
 	res, errm := collection.InsertOne(c.Request().Context(), user)
 	if errm != nil {
 		return c.JSON(500, errm.Error())
@@ -104,4 +106,13 @@ func (controller *UserController) ValidateUser(c echo.Context) error {
 		c.JSON(http.StatusOK, "User Exists")
 	}
 	return nil
+}
+func hashPassword(password string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	return string(bytes), err
+}
+
+func checkPasswordHash(password, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
 }

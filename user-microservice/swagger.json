@@ -102,7 +102,7 @@
         "msg": {
           "type": "string",
           "x-go-name": "Message",
-          "example": "User not found || Incorrect Password || user already exists"
+          "example": "error message"
         }
       },
       "x-go-package": "t/models"
@@ -121,9 +121,10 @@
           "example": "6034f125f5dc910af4d64484"
         },
         "password": {
+          "description": "hashed password",
           "type": "string",
           "x-go-name": "Password",
-          "example": "Test@A000000"
+          "example": "$2a$14$pYn/wEAQrwS3MAKJlu6.xOILAre9jWJNWjfFe4mr/PBjYi2jlc7Ty"
         }
       },
       "x-go-package": "t/models"

@@ -4,8 +4,6 @@ import (
 	"log"
 
 	"t/db"
-
-	"go.uber.org/zap"
 )
 
 type Container interface {
@@ -15,10 +13,9 @@ type Container interface {
 }
 
 type container struct {
-	logger *zap.SugaredLogger
-	env    string
-	uri    string
-	db     *db.MongoInstance
+	env string
+	uri string
+	db  *db.MongoInstance
 }
 
 func NewContainer(env string, uri string, dbName string) Container {

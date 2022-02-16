@@ -16,7 +16,6 @@ export const login = (formData) => async (dispatch) => {
 export const signup = (formData) => async (dispatch) => {
     try {
         const data = await api.signup(formData)
-        console.log(data)
         if (data.status === 201) dispatch({ type: 'AUTH', data: data.data })
         else {
             dispatch({ type: "ERROR", data: data?.data?.msg })
