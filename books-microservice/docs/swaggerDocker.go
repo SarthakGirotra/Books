@@ -40,7 +40,7 @@ import (
 // swagger:response Books
 
 // swagger:route POST /saveCSV books saveCSVID
-// API endpoint to saving csv to db.
+// API endpoint for saving csv to db.
 // Consumes:
 //     - multipart/formdata
 // responses:

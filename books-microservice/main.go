@@ -21,7 +21,6 @@ func main() {
 		go kafkaDocker.Consume(context.Background(), newContainer)
 	}
 	e := echo.New()
-	//e.Use(middleware.CORS())
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
 		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},

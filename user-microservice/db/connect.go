@@ -16,6 +16,7 @@ type MongoInstance struct {
 
 var mg MongoInstance
 
+// Connect - function to connect to mongodb in docker or atlas
 func Connect(mongoURI string, dbName string) (*MongoInstance, error) {
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongoURI))
 	if err != nil {

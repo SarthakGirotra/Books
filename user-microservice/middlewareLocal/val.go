@@ -24,7 +24,7 @@ type ApiError struct {
 	Message string
 }
 
-//main validator
+// Validate - main validator
 func (cv *CustomValidator) Validate(i interface{}) error {
 	if err := cv.validator.Struct(i); err != nil {
 		errs := translateError(err, cv.trans)
@@ -40,6 +40,7 @@ func validatePass(fl validator.FieldLevel) bool {
 	return !match
 }
 
+// translates errors to human-readable format
 func translateError(err error, trans ut.Translator) []ApiError {
 	if err == nil {
 		return nil
@@ -59,7 +60,7 @@ func translateError(err error, trans ut.Translator) []ApiError {
 	return out
 }
 
-// to validate json fields
+// Val - to validate json fields
 func Val(e *echo.Echo) {
 	val := validator.New()
 	english := en.New()

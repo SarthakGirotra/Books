@@ -59,7 +59,7 @@
         "tags": [
           "books"
         ],
-        "summary": "API endpoint to saving csv to db.",
+        "summary": "API endpoint for saving csv to db.",
         "operationId": "saveCSVID",
         "parameters": [
           {

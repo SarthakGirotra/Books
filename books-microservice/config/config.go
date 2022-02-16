@@ -8,26 +8,26 @@ import (
 	"github.com/joho/godotenv"
 )
 
-type Test interface {
+type Config interface {
 	GetEnv() string
 	GetURI() string
 	GetDBName() string
 }
 
-type test struct {
+type config struct {
 	env    string
 	uri    string
 	dbName string
 }
 
 //Load configuration with -env default : develop
-func Load() Test {
+func Load() Config {
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatalf("Some error occured. Err: %s", err)
 	}
-	localerr := godotenv.Load(".env.local")
-	if localerr != nil {
+	localErr := godotenv.Load(".env.local")
+	if localErr != nil {
 		log.Fatalf("Some error occured. Err: %s", err)
 	}
 	env := flag.String("env", "develop", "To switch configurations.")
@@ -40,17 +40,16 @@ func Load() Test {
 		uri = os.Getenv("DOCKER_MONGO_URI")
 	}
 	dbName := os.Getenv("DB_NAME")
-	return &test{env: *env, uri: uri, dbName: dbName}
+	return &config{env: *env, uri: uri, dbName: dbName}
 
 }
 
-func (t *test) GetEnv() string {
+func (t *config) GetEnv() string {
 	return t.env
 }
-
-func (t *test) GetURI() string {
+func (t *config) GetURI() string {
 	return t.uri
 }
-func (t *test) GetDBName() string {
+func (t *config) GetDBName() string {
 	return t.dbName
 }

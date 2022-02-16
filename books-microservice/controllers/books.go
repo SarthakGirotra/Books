@@ -29,10 +29,12 @@ type User struct {
 	Story string `json:"story"`
 }
 
+// NewBookController returns instance of BookController
 func NewBookController(container container.Container) *BookController {
 	return &BookController{container: container}
 }
 
+// SaveFromCSV saves from a csv file , uses kafka queue in docker
 func (controller *BookController) SaveFromCSV(c echo.Context) (err error) {
 	fmt.Println("Uploading File")
 	_ = c.Request().ParseMultipartForm(10 << 20)
@@ -74,6 +76,7 @@ func (controller *BookController) SaveFromCSV(c echo.Context) (err error) {
 		books = append(books, *b)
 	}
 	//---------------------------------------------------//
+	// in local mode
 	if controller.container.GetEnv() == "develop" {
 		collection := controller.container.GetDB().Db.Collection("books")
 		var bi []interface{}
@@ -86,6 +89,7 @@ func (controller *BookController) SaveFromCSV(c echo.Context) (err error) {
 			return c.JSON(500, msg)
 		}
 	} else {
+		// docker kafka
 		go kafkaDocker.Produce(context.Background(), books)
 	}
 
@@ -93,6 +97,7 @@ func (controller *BookController) SaveFromCSV(c echo.Context) (err error) {
 	return c.JSON(200, models.SuccessfulUpload{Message: "Successfully uploaded file"})
 }
 
+// TopBooks fetches top books order desc by likes
 func (controller *BookController) TopBooks(c echo.Context) (err error) {
 	findOptions := options.Find()
 	findOptions.SetSort(bson.D{{Key: "likecount", Value: -1}})
@@ -110,6 +115,8 @@ func (controller *BookController) TopBooks(c echo.Context) (err error) {
 	return c.JSON(http.StatusOK, books)
 
 }
+
+// Like controller likes a story after validating user from user-microservice
 func (controller *BookController) Like(c echo.Context) (err error) {
 	userReq := new(User)
 	if err = c.Bind(userReq); err != nil {
