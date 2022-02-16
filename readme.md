@@ -29,7 +29,7 @@ React will start at: http://localhost:3000
 React frontend
 
 _requirements_:
-> react.js
+- react.js
 
 ```sh
 cd frontend
@@ -37,6 +37,7 @@ npm install
 npm start
 ```
 User microservice
+
 _requirements_:
 - go
 - mongodb atlas url
@@ -49,6 +50,7 @@ go run main.go
 ```
 
 Books microservice
+
 _requirements_:
 - go
 - mongodb atlas url
