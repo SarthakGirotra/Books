@@ -33,11 +33,11 @@ import (
 // swagger:route POST /signup user idOfSignupEndpoint
 // API endpoint for signing up.
 // responses:
-// 200: User
+// 201: User
 // 401: exists
 // 400: invalid
 
-// Login Response.
+// User Response.
 // swagger:response User
 type LoginResponseWrapper struct {
 	// in:body

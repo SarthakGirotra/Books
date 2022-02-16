@@ -22,8 +22,10 @@ type BookController struct {
 	container container.Container
 }
 
-type user struct {
-	Id    string `json:"id"`
+type User struct {
+	// example: 620916dd86cae49baedc7426
+	Id string `json:"id"`
+	// example: 620aa5e18e9c117fdbb9f4d2
 	Story string `json:"story"`
 }
 
@@ -34,19 +36,22 @@ func NewBookController(container container.Container) *BookController {
 func (controller *BookController) SaveFromCSV(c echo.Context) (err error) {
 	fmt.Println("Uploading File")
 	_ = c.Request().ParseMultipartForm(10 << 20)
-	fileHeader, err := c.FormFile("myFile")
+	fileHeader, err := c.FormFile("MyFile")
 	if err != nil {
-		return c.JSON(500, err.Error())
+		msg := models.Response{Message: err.Error()}
+		return c.JSON(500, msg)
 	}
 	file, err := fileHeader.Open()
 	if err != nil {
-		return c.JSON(500, err.Error())
+		msg := models.Response{Message: err.Error()}
+		return c.JSON(500, msg)
 	}
 	defer file.Close()
 	csvReader := csv.NewReader(file)
 	records, err := csvReader.ReadAll()
 	if err != nil {
-		return c.JSON(500, err.Error())
+		msg := models.Response{Message: err.Error()}
+		return c.JSON(500, msg)
 	}
 	var books = make([]models.Books, 0)
 	for i, rec := range records {
@@ -56,7 +61,8 @@ func (controller *BookController) SaveFromCSV(c echo.Context) (err error) {
 		layout := "02-01-2006 15:04"
 		t, err := time.Parse(layout, rec[3])
 		if err != nil {
-			return c.JSON(500, err.Error())
+			msg := models.Response{Message: err.Error()}
+			return c.JSON(500, msg)
 		}
 		var likes []string
 		if len(rec[4]) > 0 {
@@ -76,40 +82,36 @@ func (controller *BookController) SaveFromCSV(c echo.Context) (err error) {
 		}
 		_, err = collection.InsertMany(c.Request().Context(), bi)
 		if err != nil {
-			return c.JSON(500, err.Error())
+			msg := models.Response{Message: err.Error()}
+			return c.JSON(500, msg)
 		}
 	} else {
 		go kafkaDocker.Produce(context.Background(), books)
 	}
 
 	//-----------------------------------------//
-	return c.JSON(200, "Successfully uploaded file")
+	return c.JSON(200, models.SuccessfulUpload{Message: "Successfully uploaded file"})
 }
 
-// @Summary      Show an account
-// @Description  get string by ID
-// @Tags         accounts
-// @Accept       json
-// @Produce      json
-// @Success      200  {object}  models.Books
-// @Router       /topBooks [get]
 func (controller *BookController) TopBooks(c echo.Context) (err error) {
 	findOptions := options.Find()
 	findOptions.SetSort(bson.D{{Key: "likecount", Value: -1}})
 	cursor, err := controller.container.GetDB().Db.Collection("books").Find(c.Request().Context(), bson.D{}, findOptions)
 	if err != nil {
-		return c.JSON(500, err.Error())
+		msg := models.Response{Message: err.Error()}
+		return c.JSON(500, msg)
 	}
 	var books = make([]models.Books, 0)
 	if err := cursor.All(c.Request().Context(), &books); err != nil {
-		return c.JSON(500, err.Error())
+		msg := models.Response{Message: err.Error()}
+		return c.JSON(500, msg)
 
 	}
 	return c.JSON(http.StatusOK, books)
 
 }
 func (controller *BookController) Like(c echo.Context) (err error) {
-	userReq := new(user)
+	userReq := new(User)
 	if err = c.Bind(userReq); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
@@ -121,10 +123,12 @@ func (controller *BookController) Like(c echo.Context) (err error) {
 	}
 	res, err := http.Get(get)
 	if err != nil {
-		return c.JSON(500, "user server down")
+		msg := models.Response{Message: "user server down"}
+		return c.JSON(500, msg)
 	}
 	if res.StatusCode == 404 {
-		return c.JSON(404, "incorrect user id")
+		msg := models.Response{Message: "incorrect user id"}
+		return c.JSON(404, msg)
 	}
 
 	collection := controller.container.GetDB().Db.Collection("books")
@@ -138,7 +142,8 @@ func (controller *BookController) Like(c echo.Context) (err error) {
 	likedBook := &models.Books{}
 	err = likedBookMongo.Decode(likedBook)
 	if err != nil {
-		return c.JSON(400, err.Error())
+		msg := models.Response{Message: err.Error()}
+		return c.JSON(400, msg)
 	}
 
 	userInLike := contains(likedBook.Likes, userReq.Id)
@@ -157,7 +162,8 @@ func (controller *BookController) Like(c echo.Context) (err error) {
 	likedBookMongo = collection.FindOneAndUpdate(c.Request().Context(), filter, update, &opt)
 	err = likedBookMongo.Decode(likedBook)
 	if err != nil {
-		return c.JSON(400, err.Error())
+		msg := models.Response{Message: err.Error()}
+		return c.JSON(400, msg)
 	}
 	return c.JSON(200, likedBook)
 }

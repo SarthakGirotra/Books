@@ -34,7 +34,7 @@ const Story = ({ data }) => {
     const [expanded, setExpanded] = React.useState(false);
     return (
         <div>
-            <Card sx={{ maxWidth: 345, minWidth: 345, margin: "auto" }}>
+            <Card className="card" >
                 <CardHeader
                     title={data.title}
                     subheader={<Moment fromNow>{data.published_date}</Moment>}

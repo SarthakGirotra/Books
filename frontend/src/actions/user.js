@@ -6,7 +6,7 @@ export const login = (formData) => async (dispatch) => {
         const data = await api.login(formData)
         if (data.status === 200) dispatch({ type: 'AUTH', data: data.data })
         else {
-            dispatch({ type: "ERROR", data: data.data })
+            dispatch({ type: "ERROR", data: data?.data?.msg })
         }
 
     } catch (error) {
@@ -16,9 +16,10 @@ export const login = (formData) => async (dispatch) => {
 export const signup = (formData) => async (dispatch) => {
     try {
         const data = await api.signup(formData)
-        if (data.status === 200) dispatch({ type: 'AUTH', data: data.data })
+        console.log(data)
+        if (data.status === 201) dispatch({ type: 'AUTH', data: data.data })
         else {
-            dispatch({ type: "ERROR", data: data.data })
+            dispatch({ type: "ERROR", data: data?.data?.msg })
         }
 
 

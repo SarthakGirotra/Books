@@ -68,7 +68,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "$ref": "#/responses/User"
           },
           "400": {
@@ -147,7 +147,7 @@
   },
   "responses": {
     "User": {
-      "description": "Login Response.",
+      "description": "User Response.",
       "schema": {
         "$ref": "#/definitions/User"
       }

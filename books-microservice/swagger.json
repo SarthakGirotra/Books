@@ -1,0 +1,217 @@
+{
+  "consumes": [
+    "application/json",
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentation of books microservice",
+    "title": "Books Microservice",
+    "version": "1.0.0"
+  },
+  "host": "localhost:1322",
+  "basePath": "/",
+  "paths": {
+    "/Like": {
+      "post": {
+        "tags": [
+          "books"
+        ],
+        "summary": "API endpoint for liking/unliking a book.",
+        "operationId": "likeBooksID",
+        "parameters": [
+          {
+            "description": "valid story id and user id",
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Like"
+          },
+          "400": {
+            "$ref": "#/responses/err"
+          },
+          "404": {
+            "$ref": "#/responses/err"
+          },
+          "500": {
+            "$ref": "#/responses/err"
+          }
+        }
+      }
+    },
+    "/saveCSV": {
+      "post": {
+        "consumes": [
+          "multipart/formdata"
+        ],
+        "tags": [
+          "books"
+        ],
+        "summary": "API endpoint to saving csv to db.",
+        "operationId": "saveCSVID",
+        "parameters": [
+          {
+            "type": "file",
+            "example": "id, title, story, date, likes(comma seperated userid array) (order of columns)",
+            "description": "csv file to be uploaded",
+            "name": "MyFile",
+            "in": "formData",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/upload"
+          },
+          "500": {
+            "$ref": "#/responses/err"
+          }
+        }
+      }
+    },
+    "/topBooks": {
+      "get": {
+        "tags": [
+          "books"
+        ],
+        "summary": "API endpoint for getting books sorted desc by likes.",
+        "operationId": "booksEndPointId",
+        "responses": {
+          "200": {
+            "description": "Books",
+            "schema": {
+              "$ref": "#/definitions/Books"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Books": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "id of book",
+          "type": "string",
+          "x-go-name": "ID",
+          "example": "620aa5e18e9c117fdbb9f4d2"
+        },
+        "likecount": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "LikeCount",
+          "example": 1
+        },
+        "likes": {
+          "description": "likes array",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Likes",
+          "example": [
+            "620aa5e18e9c117fdbb9f4d2",
+            "620aa5e18e9c117fdbb9f4d3"
+          ]
+        },
+        "published_date": {
+          "description": "date of upload",
+          "type": "string",
+          "format": "date-time",
+          "x-go-name": "PublishedDate",
+          "example": "2022-02-02T15:04:00Z"
+        },
+        "story": {
+          "description": "story of book",
+          "type": "string",
+          "x-go-name": "Story",
+          "example": "lorem ipsum"
+        },
+        "title": {
+          "description": "title of book",
+          "type": "string",
+          "x-go-name": "Title",
+          "example": "abc"
+        },
+        "userid": {
+          "description": "id of user",
+          "type": "string",
+          "x-go-name": "UserID",
+          "example": "620aa5e18e9c117fdbb9f4d2"
+        }
+      },
+      "x-go-package": "b/models"
+    },
+    "Response": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string",
+          "x-go-name": "Message",
+          "example": "error message"
+        }
+      },
+      "x-go-package": "b/models"
+    },
+    "SuccessfulUpload": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string",
+          "x-go-name": "Message",
+          "example": "successfully uploaded"
+        }
+      },
+      "x-go-package": "b/models"
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "x-go-name": "Id",
+          "example": "620916dd86cae49baedc7426"
+        },
+        "story": {
+          "type": "string",
+          "x-go-name": "Story",
+          "example": "620aa5e18e9c117fdbb9f4d2"
+        }
+      },
+      "x-go-package": "b/controllers"
+    }
+  },
+  "responses": {
+    "Like": {
+      "description": "Unliked/Liked Book",
+      "schema": {
+        "$ref": "#/definitions/Books"
+      }
+    },
+    "err": {
+      "description": "Error Response",
+      "schema": {
+        "$ref": "#/definitions/Response"
+      }
+    },
+    "upload": {
+      "description": "upload response",
+      "schema": {
+        "$ref": "#/definitions/SuccessfulUpload"
+      }
+    }
+  }
+}

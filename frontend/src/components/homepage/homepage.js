@@ -18,7 +18,7 @@ function Homepage() {
     return (
         <div>
             <div className='container'>
-                <Button variant='contained' sx={{ margin: "10px 30px 0 30px", maxWidth: "100px" }} onClick={() => { dispatch(logout()) }}>Logout</Button>
+                <Button variant='contained' sx={{ margin: "10px 30px 0 30px", maxWidth: "100px", alignSelf: "flex-end" }} onClick={() => { dispatch(logout()) }}>Logout</Button>
                 <div className='books'>
                     {books.map((data) => <Story data={data} key={data.id} />)}
                 </div>
