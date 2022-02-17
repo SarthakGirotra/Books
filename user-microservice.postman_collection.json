@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "44c0ebb9-f71b-47e5-9004-bd71a98da09b",
+		"name": "user-microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"someEmail@mail.com\",\r\n    \"password\":\"TestPass@0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:1323/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"someEmail@mail.com\",\r\n    \"password\":\"TestPass@0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1323/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"620dddc6d5e81b6bdef0587d\",\r\n    \"email\": \"someEmail@mail.com\",\r\n    \"password\": \"$2a$14$q/zM/wMOrhZzQZzSk8yr2OMKuFgJDSTnsMcXGWn6ocuu024/.cXSO\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"someEmail@mail.com\",\r\n    \"password\":\"TestPass@0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:1323/login",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"someEmail@mail.com\",\r\n    \"password\": \"TestPass@0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1323/login",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"620dddc6d5e81b6bdef0587d\",\r\n    \"email\": \"someEmail@mail.com\",\r\n    \"password\": \"$2a$14$q/zM/wMOrhZzQZzSk8yr2OMKuFgJDSTnsMcXGWn6ocuu024/.cXSO\"\r\n}"
+				}
+			]
+		}
+	]
+}

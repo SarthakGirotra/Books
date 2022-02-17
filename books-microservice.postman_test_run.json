@@ -1,0 +1,84 @@
+{
+	"id": "112e002a-8e5f-4ed7-991f-479003bae516",
+	"name": "books-microservice",
+	"timestamp": "2022-02-17T09:10:37.536Z",
+	"collection_id": "0-6e78c673-0937-4ad8-a1c4-b300134bfc9a",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "8a0b9518-3d0a-4cbf-bba9-ecf874b5b41d",
+			"name": "saveCSV",
+			"url": "http://localhost:1322/saveCSV",
+			"time": 52,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				52
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ea3af9a5-6baf-4556-902d-4549b9fc9f8e",
+			"name": "Top Books",
+			"url": "http://localhost:1322/topBooks",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				4
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "838598f2-eb32-45b7-972f-820bb5a1717f",
+			"name": "Like",
+			"url": "http://localhost:1322/Like",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				6
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 62,
+	"collection": {
+		"requests": [
+			{
+				"id": "8a0b9518-3d0a-4cbf-bba9-ecf874b5b41d",
+				"method": "POST"
+			},
+			{
+				"id": "ea3af9a5-6baf-4556-902d-4549b9fc9f8e",
+				"method": "GET"
+			},
+			{
+				"id": "838598f2-eb32-45b7-972f-820bb5a1717f",
+				"method": "POST"
+			}
+		]
+	}
+}

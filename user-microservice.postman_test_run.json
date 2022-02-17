@@ -1,0 +1,62 @@
+{
+	"id": "2a97a551-919d-4ec3-965b-ff1dac06bde7",
+	"name": "user-microservice",
+	"timestamp": "2022-02-17T05:44:08.115Z",
+	"collection_id": "0-44c0ebb9-f71b-47e5-9004-bd71a98da09b",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "c5602aad-09e8-47f0-baad-acac722f15ea",
+			"name": "signup",
+			"url": "http://localhost:1323/signup",
+			"time": 970,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				970
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "5a68cd0a-5e49-49d3-a3dc-b9148471ed1e",
+			"name": "login",
+			"url": "http://localhost:1323/login",
+			"time": 862,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				862
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1832,
+	"collection": {
+		"requests": [
+			{
+				"id": "c5602aad-09e8-47f0-baad-acac722f15ea",
+				"method": "POST"
+			},
+			{
+				"id": "5a68cd0a-5e49-49d3-a3dc-b9148471ed1e",
+				"method": "POST"
+			}
+		]
+	}
+}

@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "6e78c673-0937-4ad8-a1c4-b300134bfc9a",
+		"name": "books-microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "saveCSV",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "MyFile",
+							"type": "file",
+							"src": "/C:/Users/sarth/Documents/Book1.csv"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:1322/saveCSV",
+					"host": [
+						"localhost"
+					],
+					"port": "1322",
+					"path": [
+						"saveCSV"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "saveCSV",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "MyFile",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:1322/saveCSV",
+							"host": [
+								"localhost"
+							],
+							"port": "1322",
+							"path": [
+								"saveCSV"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"msg\": \"Successfully uploaded file\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Top Books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1322/topBooks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1322",
+					"path": [
+						"topBooks"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Top Books",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1322/topBooks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1322",
+							"path": [
+								"topBooks"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": \"620df0fc65a7842be8cfce63\",\r\n        \"title\": \"title 3\",\r\n        \"story\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum\",\r\n        \"likes\": [\r\n            \"620916dd86cae49baedc7426\",\r\n            \"620916dd86cae49baedc7422\",\r\n            \"620916dd86cae49baedc7423\",\r\n            \"620916dd86cae49baedc7426\"\r\n        ],\r\n        \"userid\": \"620916dd86cae49baedc7426\",\r\n        \"published_date\": \"2022-01-02T19:04:00Z\",\r\n        \"likecount\": 4\r\n    },\r\n    {\r\n        \"id\": \"620df0fc65a7842be8cfce62\",\r\n        \"title\": \"title 2\",\r\n        \"story\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum\",\r\n        \"likes\": [\r\n            \"620916dd86cae49baedc7422\",\r\n            \"620916dd86cae49baedc7423\",\r\n            \"620916dd86cae49baedc7426\"\r\n        ],\r\n        \"userid\": \"620916dd86cae49baedc7426\",\r\n        \"published_date\": \"2022-02-02T16:04:00Z\",\r\n        \"likecount\": 3\r\n    },\r\n    {\r\n        \"id\": \"620df0fc65a7842be8cfce65\",\r\n        \"title\": \"title 5\",\r\n        \"story\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum\",\r\n        \"likes\": [\r\n            \"620916dd86cae49baedc7422\",\r\n            \"620916dd86cae49baedc7423\",\r\n            \"620916dd86cae49baedc7426\"\r\n        ],\r\n        \"userid\": \"620916dd86cae49baedc7426\",\r\n        \"published_date\": \"2022-02-02T16:04:00Z\",\r\n        \"likecount\": 3\r\n    },\r\n    {\r\n        \"id\": \"620df0fc65a7842be8cfce66\",\r\n        \"title\": \"title 6\",\r\n        \"story\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum\",\r\n        \"likes\": [\r\n            \"620916dd86cae49baedc7422\",\r\n            \"620916dd86cae49baedc7423\",\r\n            \"620916dd86cae49baedc7426\"\r\n        ],\r\n        \"userid\": \"620916dd86cae49baedc7426\",\r\n        \"published_date\": \"2022-02-02T16:04:00Z\",\r\n        \"likecount\": 3\r\n    },\r\n    {\r\n        \"id\": \"620df0fc65a7842be8cfce61\",\r\n        \"title\": \"title 1\",\r\n        \"story\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum\",\r\n        \"likes\": [\r\n            \"620916dd86cae49baedc7422\",\r\n            \"620916dd86cae49baedc7422\"\r\n        ],\r\n        \"userid\": \"620916dd86cae49baedc7426\",\r\n        \"published_date\": \"2022-02-02T15:04:00Z\",\r\n        \"likecount\": 2\r\n    },\r\n    {\r\n        \"id\": \"620df0fc65a7842be8cfce64\",\r\n        \"title\": \"title 4\",\r\n        \"story\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum\",\r\n        \"likes\": [\r\n            \"620916dd86cae49baedc7422\",\r\n            \"620916dd86cae49baedc7422\"\r\n        ],\r\n        \"userid\": \"620916dd86cae49baedc7426\",\r\n        \"published_date\": \"2022-02-02T15:04:00Z\",\r\n        \"likecount\": 2\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Like",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"620e0f266a44da9cf356617a\",\r\n    \"story\":\"620e0e0bc0da368b7581b68a\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:1322/Like",
+					"host": [
+						"localhost"
+					],
+					"port": "1322",
+					"path": [
+						"Like"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Like",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"620e0f266a44da9cf356617a\",\r\n    \"story\":\"620e0e0bc0da368b7581b68a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1322/Like",
+							"host": [
+								"localhost"
+							],
+							"port": "1322",
+							"path": [
+								"Like"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"620e0e0bc0da368b7581b68a\",\r\n    \"title\": \"title 3\",\r\n    \"story\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum\",\r\n    \"likes\": [\r\n        \"620916dd86cae49baedc7426\",\r\n        \"620916dd86cae49baedc7422\",\r\n        \"620916dd86cae49baedc7423\",\r\n        \"620916dd86cae49baedc7426\",\r\n        \"620e0f266a44da9cf356617a\"\r\n    ],\r\n    \"userid\": \"620916dd86cae49baedc7426\",\r\n    \"published_date\": \"2022-01-02T19:04:00Z\",\r\n    \"likecount\": 5\r\n}"
+				}
+			]
+		}
+	]
+}
