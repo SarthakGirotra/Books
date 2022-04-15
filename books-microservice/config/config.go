@@ -26,12 +26,15 @@ func Load() Config {
 	if err != nil {
 		log.Fatalf("Some error occured. Err: %s", err)
 	}
-	localErr := godotenv.Load(".env.local")
-	if localErr != nil {
-		log.Fatalf("Some error occured. Err: %s", err)
-	}
+
 	env := flag.String("env", "develop", "To switch configurations.")
 	flag.Parse()
+	if *env == "develop" {
+		localErr := godotenv.Load(".env.local")
+		if localErr != nil {
+			log.Fatalf("Local ENV Err: %s", localErr)
+		}
+	}
 
 	var uri string
 	if *env == "develop" {
